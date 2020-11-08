@@ -1,0 +1,20 @@
+site_name: IBM Cloud REST API Examples
+theme:
+  name: material
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - shell
+    - python
+  features:
+    - toc.autohide
+    - navigation.tabs
+    - search.highlight
+  palette:
+    scheme: slate
+    primary: cyan
+nav:
+    - Home: 'index.md'
+    - 'IBM Cloud REST API Examples':
+        - 'Search API': 'search-examples.md'
+        - 'Tagging API': 'tagging-examples.md'
