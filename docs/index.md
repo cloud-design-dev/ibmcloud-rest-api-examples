@@ -1,17 +1,26 @@
-# Welcome to MkDocs
+# Welcome to IBM Cloud REST API Examples
+In order to interact with the various IBM Cloud REST API's you will need to use an IAM Bearer Token. Tokens support authenticated requests without embedding service credentials in every call. In order to generate an IAM Bearer Token you will need your IBM Cloud [API Key](https://cloud.ibm.com/docs/account?topic=account-userapikey#userapikey). 
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+> It is recommended to install [jq](https://stedolan.github.io/jq/) in order to filter the output of various API calls.
 
-## Commands
+## Generating a Bearer Token
+```shell
+export IBMCLOUD_API_KEY='Your API Key'
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+curl -s -k -X POST --header "Content-Type: application/x-www-form-urlencoded" \
+--header "Accept: application/json" --data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey" \
+--data-urlencode "apikey=${IBMCLOUD_API_KEY}" "https://iam.cloud.ibm.com/identity/token" \
+| jq -r '(.token_type + " " + .access_token)'
+```
 
-## Project layout
+## Set IAM Token as environmental variable
+The following example will set the Bearer token as the environmental variable `iam_token`
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+```shell 
+export IBMCLOUD_API_KEY='Your API Key'
+
+iam_token=`curl -s -k -X POST --header "Content-Type: application/x-www-form-urlencoded" \
+--header "Accept: application/json" --data-urlencode "grant_type=urn:ibm:params:oauth:grant-type:apikey" \
+--data-urlencode "apikey=${IBMCLOUD_API_KEY}" "https://iam.cloud.ibm.com/identity/token"  \
+| jq -r '(.token_type + " " + .access_token)'`
+```

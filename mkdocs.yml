@@ -15,6 +15,5 @@ theme:
     primary: cyan
 nav:
     - Home: 'index.md'
-    - 'IBM Cloud REST API Examples':
-        - 'Search API': 'search-examples.md'
-        - 'Tagging API': 'tagging-examples.md'
+    - 'Search API': 'search-examples.md'
+    - 'VPC API': 'vpc-examples.md'
