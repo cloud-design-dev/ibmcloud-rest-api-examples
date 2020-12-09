@@ -3,7 +3,7 @@ FROM python:3 AS build
 ARG GH_TOKEN
 
 RUN pip3 install mkdocs
-RUN pip3 install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+RUN pip3 install mkdocs-material
 
 COPY . /app
 WORKDIR /app 
